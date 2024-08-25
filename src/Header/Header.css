@@ -1,0 +1,24 @@
+.Header {
+    background-color: #101d53;
+    display: flex;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+
+    position: sticky;
+    margin: 0px;
+    padding: 0px;
+}
+.Link {
+    color: #e2e8f0;
+    margin: 10px;
+    font-size: 15px;
+    text-decoration: underline 0.13em rgba(0, 0, 0, 0);
+    text-underline-offset: 5px;
+    transition: text-decoration-color 300ms;
+}
+
+.Link:hover {
+    color: #ffffff;
+    text-decoration-color: rgba(255, 222, 89, 1);
+}
