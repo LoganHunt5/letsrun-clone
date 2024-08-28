@@ -5,6 +5,14 @@ import DropArrow from './pics/DropArrow.png'
 import DropArrowHover from './pics/DropArrowHover.png'
 
 function Link({ which }){
+    if(which.name == "About"){
+        return(
+            <a 
+                className={which.class} 
+                onClick={HideDrop}>
+                {which.name}</a>
+        );
+    }
     return(
         <a className={which.class} href={which.link}>{which.name}</a>
     );
@@ -23,10 +31,10 @@ function SearchBar(){
 function ShowBar(){
     const BarWrap = document.getElementById('BarWrap');
     if (BarWrap){
-        if(BarWrap.style.width === '0px'){
-            BarWrap.style.width = '250px';
-        }else{
+        if(BarWrap.style.width == '250px'){
             BarWrap.style.width = '0px';
+        }else{
+            BarWrap.style.width = '250px';
         }
     }
 }
@@ -37,7 +45,7 @@ function SearchMag(){
         <>
             <div className="SearchMagWrap">
                 <SearchBar />
-                <div className="SearchMag">
+                <div className="SearchMag" onClick={ShowBar}>
                     <img src={SearchMagGrey} />
                 </div>
                 <div className="SearchMagHover" onClick={ShowBar}>
@@ -50,8 +58,26 @@ function SearchMag(){
 
 function DropItem({which}){
     return(
-        <li className={which.class}><a  href={which.link}>{which.name}</a></li> 
+        <li className={which.class}>
+            <div className = "BorderBar">
+                <a  href={which.link}>{which.name}</a>
+            </div>
+        </li> 
     )
+}
+
+function HideDrop(){
+    const Menu = document.getElementById('DropMenu');
+    const Arrow = document.getElementById('DropArrow');
+    if(Menu){
+        if(Menu.style.display == 'none'){
+            Menu.style.display = 'initial';
+            Arrow.style.transform = 'rotate(180deg)';
+        } else {
+            Menu.style.display = 'none';
+            Arrow.style.transform = 'rotate(0deg)';
+        }
+    }
 }
 
 function DropMenu({about}){
@@ -64,7 +90,7 @@ function DropMenu({about}){
         );
     });
     return (
-        <div className="DropMenu">
+        <div className="DropMenu" id="DropMenu">
             <ul>
                 {links}
             </ul>
@@ -75,16 +101,16 @@ function DropMenu({about}){
 function DropDown({about}){
     return(
         <div className="DropWrap">
-            <div className="Drop">
-                <img src={DropArrow} />
-            </div>
-            <div className="DropHover">
-                <img src={DropArrowHover} />
+            <div className="Drop" onClick={HideDrop} >
+                <img src={DropArrow} id="DropArrow" />
             </div>
             <DropMenu about={about} />
         </div>
     );
 }
+/*<div className="DropHover" onClick={HideDrop} >
+                <img src={DropArrowHover} />
+            </div>*/
 
 function InternalHeader({ links, about }){
     const parts = [];
