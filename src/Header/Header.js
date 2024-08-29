@@ -2,15 +2,20 @@ import './Header.css'
 import SearchMagGrey from './pics/SearchMagGrey.png';
 import SearchMagYellow from './pics/SearchMagYellow.png';
 import DropArrow from './pics/DropArrow.png'
-import DropArrowHover from './pics/DropArrowHover.png'
+import { useState, useRef, useEffect } from "react";
 
-function Link({ which }){
-    if(which.name == "About"){
+function Link({ which, about }){
+    if(which.hasdrop){
+        
         return(
-            <a 
-                className={which.class} 
-                onClick={HideDrop}>
-                {which.name}</a>
+            <div className="Linkwrap">
+                <a 
+                    className={which.class} 
+                >
+                    {which.name}</a>
+                <DropDown 
+                    about={about}/>
+            </div>
         );
     }
     return(
@@ -31,7 +36,7 @@ function SearchBar(){
 function ShowBar(){
     const BarWrap = document.getElementById('BarWrap');
     if (BarWrap){
-        if(BarWrap.style.width == '250px'){
+        if(BarWrap.style.width === '250px'){
             BarWrap.style.width = '0px';
         }else{
             BarWrap.style.width = '250px';
@@ -46,10 +51,10 @@ function SearchMag(){
             <div className="SearchMagWrap">
                 <SearchBar />
                 <div className="SearchMag" onClick={ShowBar}>
-                    <img src={SearchMagGrey} />
+                    <img src={SearchMagGrey} alt="MagGrey" />
                 </div>
                 <div className="SearchMagHover" onClick={ShowBar}>
-                    <img src={SearchMagYellow} /> 
+                    <img src={SearchMagYellow} alt="MagYellow"/> 
                 </div>
             </div>
         </>
@@ -67,18 +72,18 @@ function DropItem({which}){
 }
 
 function HideDrop(){
-    const Menu = document.getElementById('DropMenu');
     const Arrow = document.getElementById('DropArrow');
-    if(Menu){
-        if(Menu.style.display == 'none'){
-            Menu.style.display = 'initial';
-            Arrow.style.transform = 'rotate(180deg)';
-        } else {
-            Menu.style.display = 'none';
+    if(Arrow){
+        if(Arrow.style.width === '15px'){
+            Arrow.style.width = '14px';
             Arrow.style.transform = 'rotate(0deg)';
+        } else {
+            Arrow.style.width = '15px';
+            Arrow.style.transform = 'rotate(180deg)';
         }
     }
 }
+
 
 function DropMenu({about}){
     const links = [];
@@ -90,27 +95,49 @@ function DropMenu({about}){
         );
     });
     return (
-        <div className="DropMenu" id="DropMenu">
-            <ul>
-                {links}
-            </ul>
-        </div>
+        <ul>
+            {links}
+        </ul>
     ); 
 }
-
+/*Hide drop in Drop*/
 function DropDown({about}){
+    const [IsMenuOpen, setIsMenuOpen] = useState(false)
+    const DropRef = useRef();
+    const DropListRef = useRef();
+    useEffect(() => {
+        DropRef.current.addEventListener("click", () => setIsMenuOpen(true));
+        DropRef.current.addEventListener("click", HideDrop);
+    });
+
+    useEffect(() => {
+        const CheckIfClickedOutside = e => {
+            // If the menu is open and the clicked target is not within the menu,
+            // then close the menu
+            if (IsMenuOpen && DropListRef.current && !DropListRef.current.contains(e.target)){
+                setIsMenuOpen(false);
+                HideDrop();
+            }
+        }
+        document.addEventListener("mousedown", CheckIfClickedOutside)
+        return () => {
+            // Cleanup the event listener
+            document.removeEventListener("mousedown", CheckIfClickedOutside)
+        }
+    });
     return(
-        <div className="DropWrap">
-            <div className="Drop" onClick={HideDrop} >
+        <div className="DropWrap" ref={DropRef}>
+            <div className="Drop" >
                 <img src={DropArrow} id="DropArrow" />
             </div>
-            <DropMenu about={about} />
+            {IsMenuOpen && (
+                <div className="DropMenu" id="DropMenu" ref={DropListRef}>
+                    <DropMenu about={about} /> 
+                </div>
+            )}
         </div>
     );
 }
-/*<div className="DropHover" onClick={HideDrop} >
-                <img src={DropArrowHover} />
-            </div>*/
 
 function InternalHeader({ links, about }){
     const parts = [];
@@ -118,29 +145,31 @@ function InternalHeader({ links, about }){
         parts.push(
             <Link 
                 which={link}
+                about={about}
                 key={link.name} />
         );
     });
     return(
         <div className="Header"> 
             {parts}
-            <DropDown about={about} />
             <SearchMag />
         </div>
     );
 };
 
 const LINKS = [
-    {name: "Blog", link: "nothing", class:"Blog"},
-    {name: "Portfolio", link: "nothing", class:"Link"},
-    {name: "Podcast", link: "nothing", class:"Link"},
-    {name: "About", link: "nothing", class:"Link"},
-    {name: "Sign In", link: "nothing", class:"LinkSignIn"}
-    /*{name: "FAKERUN.COM", link: "nothing", class:"FakeRun"}*/
+    {name: "Blog", link: "nothing", class:"Blog", hasdrop: false},
+    {name: "Portfolio", link: "nothing", class:"Link", hasdrop: false},
+    {name: "Podcast", link: "nothing", class:"Link", hasdrop: false},
+    {name: "About", link: "nothing", class:"Link", hasdrop: true},
+    {name: "Sign In", link: "nothing", class:"LinkSignIn", hasdrop: false}
 ];
+
 const ABOUT = [
     {name: "FAQ", link: "nothing.com", class:"AboutLink"},
-    {name: "Test", link: "nothing.com", class:"AboutLink"},
+    {name: "Test1", link: "nothing.com", class:"AboutLink"},
+    {name: "Test2", link: "nothing.com", class:"AboutLink"},
+    {name: "Test3", link: "nothing.com", class:"AboutLink"},
 ]
 
 export default function Header() {
