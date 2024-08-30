@@ -12,7 +12,6 @@
     -webkit-user-select: none;
 }
 
-
 .Linkwrap {
     display: flex;
     height: 100%;
@@ -81,53 +80,6 @@
 }
 
 
-.SearchMag, .SearchMagHover {
-    position: absolute; 
-    display: block;
-    justify-content: center;
-    align-content: center;
-    right: 175px;
-    top: 0px;
-    height: 100%;
-}
-
-.SearchMag img, .SearchMagHover img {
-    max-width: 35px;
-    padding-top: 10px;
-    height: 35px;
-}
-
-.SearchMagWrap .SearchMagHover {
-    opacity: 0;
-    transition: opacity 300ms;
-}
-
-.SearchMagWrap:hover .SearchMagHover {
-    opacity: 1; 
-}
-
-.SearchBarWrap {
-    position:absolute;
-    box-shadow: 2px 2px 2px rgb(255, 84, 167);
-    right: 220px;
-    top: 28px;
-    height: 40px;
-    width:0px;
-    overflow: hidden;
-    transition: width 400ms ease-out;
-}
-.SearchBar {
-    height: 100%;
-    padding-left: 10px;
-    border: 2px solid rgba(245, 84, 167, 0);
-    width: 100%;
-    transition: border 200ms;
-}
-.SearchBar:focus{
-
-    border: 2px solid rgba(245, 84, 167, 1);
-}
-
 .DropWrap {
     width: 15px;
     height: 10px;
@@ -194,4 +146,52 @@
 .AboutLink:hover{
     background-color: rgba(0, 0, 0, 0.14);
     cursor:pointer;
+}
+
+.SearchMag, .SearchMagHover {
+    position: absolute; 
+    display: block;
+    justify-content: center;
+    align-content: center;
+    right: 175px;
+    top: 0px;
+    height: 100%;
+}
+
+.SearchMagWrap .SearchMagHover {
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+.SearchMagHover:hover {
+    opacity: 1;
+}
+
+.SearchBarWrap {
+    position:absolute;
+    box-shadow: 2px 2px 2px rgb(255, 84, 167);
+    right: 220px;
+    top: 28px;
+    height: 40px;
+    width:0px;
+    overflow: hidden;
+    transition: width 400ms ease-out;
+}
+
+.SearchBar {
+    height: 100%;
+    padding-left: 10px;
+    border: 2px solid rgba(245, 84, 167, 0);
+    width: 100%;
+    transition: border 200ms;
+}
+
+.SearchBar:focus{
+    border: 2px solid rgba(245, 84, 167, 1);
+}
+
+.SearchMag img, .SearchMagHover img {
+    max-width: 35px;
+    padding-top: 10px;
+    height: 35px;
 }
