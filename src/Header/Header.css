@@ -1,5 +1,5 @@
 .Header {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #e0cece;
     display: flex;
     height: 90px;
     align-items: center;
@@ -25,13 +25,21 @@
 }
 .Linkwrap:hover .Link{
     color: #ffffff;
-    text-decoration-color: rgba(245, 144, 163, 1);
-
+    text-decoration-color: rgba(255, 84, 167, 1);
+}
+.DropArrowImg{
+    transition: opacity 300ms;
+    z-index: 1;
+}
+.DropArrowHoverImg{
+    z-index: 0;
+}
+.Linkwrap:hover .DropArrowImg{
+    opacity: 0;
 }
 
 .Link, .LinkSignIn {
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    text-shadow: 2px 2px 0px #cf5791;
     color: #e2e8f0;
     letter-spacing: 1px;
     margin: 10px;
@@ -40,27 +48,26 @@
     line-height: 90px;
     text-decoration: underline 0.15em rgba(0, 0, 0, 0);
     text-underline-offset: 10px;
-    transition: text-decoration-color 300ms;
+    transition: text-decoration-color 300ms, text-shadow 300ms;
 }
 
 .Blog {
+    text-shadow: 2px 2px 0px #cf5791;
     line-height: 90px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-    color: rgba(245, 144, 163, .5);
+    color: rgba(225, 144, 163, 1);
     letter-spacing: 1px;
     margin: 15px;
     height: 100%;
-    margin-left: 95px;
+    margin-left: 75px;
     font-size: 32px;
     text-decoration: underline 0.15em rgba(0, 0, 0, 0);
     text-underline-offset: 10px;
-    transition: text-decoration-color 300ms;
-    transition: color 300ms;
+    transition: text-decoration 300ms, color 300ms, text-shadow 300ms;
 }
 .Blog:Hover{
-    color: rgba(245, 144, 163, 1);
-    text-decoration-color: rgba(245, 144, 163, 1);
+    color: rgba(255, 84, 167, 1);
+    text-decoration: underline 0.15em rgba(255, 84, 167, 1);
+    text-shadow: 2px 2px 1px #cf5791;
 }
 
 .LinkSignIn {
@@ -69,21 +76,25 @@
 }
 .Link:hover, .LinkSignIn:Hover{
     color: #ffffff;
-    text-decoration-color: rgba(245, 144, 163, 1);
+    text-decoration-color: rgba(255, 84, 167, 1);
+    text-shadow: 2px 2px 2px rgb(255, 84, 167);
 }
 
 
 .SearchMag, .SearchMagHover {
     position: absolute; 
+    display: block;
+    justify-content: center;
+    align-content: center;
     right: 175px;
-    top: 28px;
-    max-width: 35px;
-    height: 35px;
+    top: 0px;
+    height: 100%;
 }
 
 .SearchMag img, .SearchMagHover img {
-    width: 100%;
-    height: 100%;
+    max-width: 35px;
+    padding-top: 10px;
+    height: 35px;
 }
 
 .SearchMagWrap .SearchMagHover {
@@ -97,8 +108,9 @@
 
 .SearchBarWrap {
     position:absolute;
+    box-shadow: 2px 2px 2px rgb(255, 84, 167);
     right: 220px;
-    top: 25px;
+    top: 28px;
     height: 40px;
     width:0px;
     overflow: hidden;
@@ -106,7 +118,14 @@
 }
 .SearchBar {
     height: 100%;
+    padding-left: 10px;
+    border: 2px solid rgba(245, 84, 167, 0);
     width: 100%;
+    transition: border 200ms;
+}
+.SearchBar:focus{
+
+    border: 2px solid rgba(245, 84, 167, 1);
 }
 
 .DropWrap {
@@ -127,11 +146,10 @@
     position: absolute;
 }
 
-
 .DropMenu {
     position: absolute;
     top: 60px;
-    left: 600px;
+    left: 580px;
     width: 250px;
     z-index: 0;
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
@@ -148,21 +166,29 @@
 
 .AboutLink{
     text-decoration: none;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.BorderBar{
-    border-bottom: 1px solid grey;
-    padding: 10px;
-}
-.AboutLink:last-child .BorderBar{
-    border-bottom: unset;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .AboutLink a{
+    display: block;
     font-weight: 300;
     text-decoration: none;
     color: black;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.BorderBar{
+    border-bottom: 1px solid grey;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.AboutLink:last-child .BorderBar{
+    border-bottom: unset;
 }
 
 .AboutLink:hover{
