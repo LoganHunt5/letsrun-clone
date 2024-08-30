@@ -42,15 +42,15 @@ const LINKS = [
     {name: "Blog", link: "nothing", class:"Blog", hasdrop: false},
     {name: "Portfolio", link: "nothing", class:"Link", hasdrop: false},
     {name: "Podcast", link: "nothing", class:"Link", hasdrop: false},
-    {name: "About", link: "nothing", class:"Link", hasdrop: true},
+    {name: "Links", link: "nothing", class:"Link", hasdrop: true},
     {name: "Sign In", link: "nothing", class:"LinkSignIn", hasdrop: false}
 ];
 
 const ABOUT = [
-    {name: "FAQ", link: "nothing.com", class:"AboutLink"},
-    {name: "Test1", link: "nothing.com", class:"AboutLink"},
-    {name: "Test2", link: "nothing.com", class:"AboutLink"},
-    {name: "Test3", link: "nothing.com", class:"AboutLink"},
+    {name: "LinkedIn", link: "nothing.com", class:"AboutLink"},
+    {name: "Discord", link: "nothing.com", class:"AboutLink"},
+    {name: "GitHub", link: "nothing.com", class:"AboutLink"},
+    {name: "Twitter", link: "nothing.com", class:"AboutLink"},
 ]
 
 export default function Header() {

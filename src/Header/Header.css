@@ -148,7 +148,7 @@
     cursor:pointer;
 }
 
-.SearchMag, .SearchMagHover {
+.SearchMag, .SearchMagHover, .SearchMagActive {
     position: absolute; 
     display: block;
     justify-content: center;
@@ -156,6 +156,10 @@
     right: 175px;
     top: 0px;
     height: 100%;
+}
+
+.SearchMagActive{
+    opacity: 1;
 }
 
 .SearchMagWrap .SearchMagHover {
@@ -181,7 +185,7 @@
 .SearchBar {
     height: 100%;
     padding-left: 10px;
-    border: 2px solid rgba(245, 84, 167, 0);
+    border: 1px solid rgba(245, 84, 167, 1);
     width: 100%;
     transition: border 200ms;
 }
@@ -190,7 +194,7 @@
     border: 2px solid rgba(245, 84, 167, 1);
 }
 
-.SearchMag img, .SearchMagHover img {
+.SearchMag img, .SearchMagHover img, .SearchMagActive img{
     max-width: 35px;
     padding-top: 10px;
     height: 35px;
