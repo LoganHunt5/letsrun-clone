@@ -8,6 +8,7 @@ function ShowBar(){
 
 
 function SearchBar(){
+    const [IsSearchOpen, setIsSearchOpen] = useState(false)
     const SearchMag = useRef();
     const SearchBar = useRef();
     const BarWrap = useRef();
@@ -20,6 +21,7 @@ function SearchBar(){
             }else{
                 BarWrap.current.style.width = '250px';
             }
+            setIsSearchOpen(!IsSearchOpen);
         }
     }
 
@@ -27,7 +29,7 @@ function SearchBar(){
         const CheckIfClickedOutside = e => {
             // If the menu is open and the clicked target is not within the menu,
             // then close the menu
-            if (SearchBar.current && !SearchBar.current.contains(e.target)&& !SearchMag.current.contains(e.target)){
+            if (IsSearchOpen && SearchBar.current && !SearchBar.current.contains(e.target)&& !SearchMag.current.contains(e.target)){
                 ShowBar();
             }
         }
