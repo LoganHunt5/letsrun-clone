@@ -1,14 +1,26 @@
 import DropArrowImg from './pics/DropArrow.png';
 import { useState, useRef, useEffect} from "react";
 import DropArrowHoverImg from './pics/DropArrowHover.png';
+import Twitter from '../Floor/Icons/twitter.png'; 
+import GitHub from '../Floor/Icons/github.png';
+import YouTube from '../Floor/Icons/youtube.png';
+import LinkedIn from '../Floor/Icons/linkedin.png';
 
 function DropItem({which}){
+    const image = which.image; 
     return(
-        <li className={which.class}>
-            <a  href={which.link}>{which.name}</a>
-            <div className = "BorderBar">
+        <div className="DropItemWBorder">
+            <div className="DropItemWrap">
+                <div className="DropImage">
+                    <img src={image} alt="dropimage"></img>
+                </div>
+                <li className={which.class}>
+                    <a  href={which.link}>{which.name}</a>
+                </li> 
             </div>
-        </li> 
+            <div className="BorderBar">
+            </div>
+        </div>
     )
 }
 
@@ -22,7 +34,7 @@ function DropMenu({about}){
         );
     });
     return (
-        <ul>
+        <ul className="Dropul">
             {links}
         </ul>
     ); 
@@ -40,6 +52,13 @@ function DropDown({which, about}){
 
     function CycleDrop() {
         setIsMenuOpen(!IsMenuOpen)
+        if(IsMenuOpen){
+            DropArrowHover.current.className = "DropArrowHoverImg";
+            DropRef.current.className = "Linkwrap";
+        } else {
+            DropArrowHover.current.className = "DropArrowActive";
+            DropRef.current.className = "LinkwrapActive";
+        }
     }
 
     useEffect(() => {
@@ -47,7 +66,7 @@ function DropDown({which, about}){
             // If the menu is open and the clicked target is not within the menu,
             // then close the menu
             if (IsMenuOpen && DropListRef.current && !DropListRef.current.contains(e.target)&& !DropRef.current.contains(e.target)){
-                setIsMenuOpen(false);
+                CycleDrop();
             }
         }
         document.addEventListener("mousedown", CheckIfClickedOutside)
@@ -63,7 +82,7 @@ function DropDown({which, about}){
         if(IsMenuOpen && DropArrow.current){
             DropArrowHover.current.style.transform = 'rotate(180deg)';
             DropArrow.current.style.transform = 'rotate(180deg)';
-            } else {
+        } else {
             DropArrowHover.current.style.transform = 'rotate(0deg)';
             DropArrow.current.style.transform = 'rotate(0deg)';
         }

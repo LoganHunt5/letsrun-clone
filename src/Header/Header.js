@@ -4,6 +4,10 @@ import SearchBar from './SearchBar.js';
 import DropDown from './DropDown.js'
 import DropArrowImg from './pics/DropArrow.png';
 import DropArrowHoverImg from './pics/DropArrowHover.png';
+import Twitter from '../Floor/Icons/twitter.png'; 
+import GitHub from '../Floor/Icons/github.png';
+import YouTube from '../Floor/Icons/youtube.png';
+import LinkedIn from '../Floor/Icons/linkedin.png';
 
 function Link({ which, about }){
     if(which.hasdrop){
@@ -47,10 +51,10 @@ const LINKS = [
 ];
 
 const ABOUT = [
-    {name: "LinkedIn", link: "nothing.com", class:"AboutLink"},
-    {name: "Discord", link: "nothing.com", class:"AboutLink"},
-    {name: "GitHub", link: "nothing.com", class:"AboutLink"},
-    {name: "Twitter", link: "nothing.com", class:"AboutLink"},
+    {name: "LinkedIn", link: "nothing.com", class:"AboutLink", image:LinkedIn},
+    {name: "YouTube", link: "nothing.com", class:"AboutLink", image:YouTube},
+    {name: "GitHub", link: "nothing.com", class:"AboutLink", image:GitHub},
+    {name: "Twitter", link: "nothing.com", class:"AboutLink", image:Twitter},
 ]
 
 export default function Header() {

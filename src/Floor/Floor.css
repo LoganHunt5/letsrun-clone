@@ -3,6 +3,46 @@
     bottom: 0;
     display: flex;
     width: 100%;
-    height: 140px;
-    background-color: rgb(247, 247, 247);
+    height: 80px;
+    padding-left: 100px;
+    padding-top: 5px;
+    background-color: rgb(245, 245, 245);
+}
+
+.Info {
+    padding-right: 40px;
+}
+
+.IconsWrap{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /*change to add more rows of icons*/
+    width: 60px;
+}
+
+.LinkWrap {
+    margin: 0px;
+    width: 30px;
+    height: 30px;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.LinkWrap a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.LinkWrap:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.LinkWrap img{
+    width: 20px;
+    height: auto;
 }
