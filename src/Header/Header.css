@@ -38,6 +38,7 @@
     color: #ffffff;
     text-decoration-color: rgba(255, 84, 167, 1);
 }
+
 .DropArrowImg{
     transition: opacity 300ms;
     z-index: 1;
@@ -101,7 +102,7 @@
     cursor: pointer; 
 }
 
-.Drop{ 
+.Drop { 
     width: 100%;
     height: 100%;
 }
@@ -112,12 +113,25 @@
     position: absolute;
 }
 
+
+.DropTag{
+    display: block;
+    height: 44px;
+    width: 250px;
+    margin-left: -28px;
+    padding-left: 38px;
+    padding-top: 22px;
+    font-weight: 300;
+    text-decoration: none;
+    color: black;
+}
+
+
 .DropImage img{
     width: 18px;
     height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    display: block;
+    margin: auto;
 }
 
 .DropItemWrap{
@@ -144,21 +158,7 @@
     width: 100%;
 }
 
-.AboutLink{
-    text-decoration: none;
-    padding-left: 0px;
-    padding-right: 0px;
-}
 
-.AboutLink a{
-    display: block;
-    font-weight: 300;
-    text-decoration: none;
-    color: black;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-}
 
 .BorderBar{
     border-bottom: 1px solid grey;
@@ -183,6 +183,7 @@
     right: 175px;
     top: 0px;
     height: 100%;
+    cursor: pointer;
 }
 
 .SearchMagActive{

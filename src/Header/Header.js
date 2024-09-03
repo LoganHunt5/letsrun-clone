@@ -43,18 +43,18 @@ function InternalHeader({ links, about }){
 };
 
 const LINKS = [
-    {name: "Blog", link: "nothing", class:"Blog", hasdrop: false},
-    {name: "Portfolio", link: "nothing", class:"Link", hasdrop: false},
-    {name: "Podcast", link: "nothing", class:"Link", hasdrop: false},
+    {name: "Blog", link: "Blog", class:"Blog", hasdrop: false},
+    {name: "Portfolio", link: "Portfolio", class:"Link", hasdrop: false},
+    {name: "Podcast", link: "Podcast", class:"Link", hasdrop: false},
     {name: "Links", link: "nothing", class:"Link", hasdrop: true},
-    {name: "Sign In", link: "nothing", class:"LinkSignIn", hasdrop: false}
+    {name: "Sign In", link: "SignIn", class:"LinkSignIn", hasdrop: false}
 ];
 
 const ABOUT = [
-    {name: "LinkedIn", link: "nothing.com", class:"AboutLink", image:LinkedIn},
-    {name: "YouTube", link: "nothing.com", class:"AboutLink", image:YouTube},
-    {name: "GitHub", link: "nothing.com", class:"AboutLink", image:GitHub},
-    {name: "Twitter", link: "nothing.com", class:"AboutLink", image:Twitter},
+    {name: "LinkedIn", link: "https://www.linkedin.com/in/logan-hunt-28bb93326/", class:"AboutLink", image:LinkedIn},
+    {name: "YouTube", link: "https://www.youtube.com/@fease9405", class:"AboutLink", image:YouTube},
+    {name: "GitHub", link: "https://github.com/LoganHunt5", class:"AboutLink", image:GitHub},
+    {name: "Twitter", link: "https://x.com/ks5p455cv", class:"AboutLink", image:Twitter},
 ]
 
 export default function Header() {

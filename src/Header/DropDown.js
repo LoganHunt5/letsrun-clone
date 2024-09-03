@@ -8,6 +8,7 @@ import LinkedIn from '../Floor/Icons/linkedin.png';
 
 function DropItem({which}){
     const image = which.image; 
+
     return(
         <div className="DropItemWBorder">
             <div className="DropItemWrap">
@@ -15,7 +16,9 @@ function DropItem({which}){
                     <img src={image} alt="dropimage"></img>
                 </div>
                 <li className={which.class}>
-                    <a  href={which.link}>{which.name}</a>
+            <a class="DropTag" href={which.link} target="_blank">
+                        {which.name}
+            </a>
                 </li> 
             </div>
             <div className="BorderBar">
@@ -48,64 +51,75 @@ function DropDown({which, about}){
     const DropArrow = useRef();
     const DropArrowHover = useRef();
 
+    useEffect(()=>{
+        DropRef.current.addEventListener("mousedown", OpenDrop);
+    },[]);
 
-
-    function CycleDrop() {
-        setIsMenuOpen(!IsMenuOpen)
+    useEffect(()=>{
         if(IsMenuOpen){
-            DropArrowHover.current.className = "DropArrowHoverImg";
-            DropRef.current.className = "Linkwrap";
-        } else {
+            DropArrowHover.current.style.transform = 'rotate(180deg)';
+            DropArrow.current.style.transform = 'rotate(180deg)';
             DropArrowHover.current.className = "DropArrowActive";
             DropRef.current.className = "LinkwrapActive";
+            clicks = 0;
+            DropRef.current.removeEventListener("mousedown", OpenDrop);
+            document.addEventListener("mousedown", CheckIfClickedOutside)
+        } else if(!IsMenuOpen){
+            DropArrowHover.current.className = "DropArrowHoverImg";
+            DropRef.current.className = "Linkwrap";
+            DropArrowHover.current.style.transform = 'rotate(0deg)';
+            DropArrow.current.style.transform = 'rotate(0deg)';
+            document.removeEventListener("mousedown", CheckIfClickedOutside)
+            DropRef.current.addEventListener("mousedown", OpenDrop);
+        }
+
+    },[IsMenuOpen]);
+
+    let clicks = 0;
+    function OpenDrop(){
+        if(!IsMenuOpen){
+            setIsMenuOpen(true);
+            DropRef.current.removeEventListener("mousedown", OpenDrop);
+            document.addEventListener("mousedown", CheckIfClickedOutside)
         }
     }
 
-    useEffect(() => {
-        const CheckIfClickedOutside = e => {
-            // If the menu is open and the clicked target is not within the menu,
-            // then close the menu
-            if (IsMenuOpen && DropListRef.current && !DropListRef.current.contains(e.target)&& !DropRef.current.contains(e.target)){
-                CycleDrop();
-            }
-        }
-        document.addEventListener("mousedown", CheckIfClickedOutside)
-        DropRef.current.addEventListener("mousedown", CycleDrop);
-        return () => {
-            // Cleanup the event listener
-            DropRef.current.removeEventListener("mousedown", CycleDrop);
+    function CycleDrop() {
+        if(IsMenuOpen){
+            setIsMenuOpen(false);
             document.removeEventListener("mousedown", CheckIfClickedOutside)
+            DropRef.current.addEventListener("mousedown", OpenDrop);
         }
-    });
+    }
 
-    useEffect(() => {
-        if(IsMenuOpen && DropArrow.current){
-            DropArrowHover.current.style.transform = 'rotate(180deg)';
-            DropArrow.current.style.transform = 'rotate(180deg)';
-        } else {
-            DropArrowHover.current.style.transform = 'rotate(0deg)';
-            DropArrow.current.style.transform = 'rotate(0deg)';
+    const CheckIfClickedOutside = e => {
+        if (clicks != 0 && IsMenuOpen && DropListRef.current && !DropListRef.current.contains(e.target)){
+            CycleDrop();
         }
-    }, [IsMenuOpen]);
+        clicks = clicks + 1;
+    }
 
     return(
-        <div className="Linkwrap" ref={DropRef}>
-            <a 
-                className={which.class} 
-            >
-                {which.name}</a>
-            <div className="DropWrap" >
-                <div className="Drop" >
-                    <img src={DropArrowImg} class="DropArrowImg" ref={DropArrow}></img>
-                    <img src={DropArrowHoverImg} class="DropArrowHoverImg" ref={DropArrowHover}></img>
-                </div>
-                {IsMenuOpen && (
-                    <div className="DropMenu" id="DropMenu" ref={DropListRef}>
-                        <DropMenu about={about} /> 
+        <>
+            <div className="Linkwrap" ref={DropRef}>
+                <a 
+                    className={which.class} 
+                >
+                    {which.name}</a>
+                <div className="DropWrap" >
+                    <div className="Drop" >
+                        <img src={DropArrowImg} class="DropArrowImg" ref={DropArrow}></img>
+                        <img src={DropArrowHoverImg} class="DropArrowHoverImg" ref={DropArrowHover}></img>
                     </div>
-                )}
+                </div>
             </div>
-        </div>
+            {IsMenuOpen && (
+                <div className="DropMenu" id="DropMenu" ref={DropListRef}>
+                    <DropMenu about={about} /> 
+                </div>
+            )}
+
+        </>
     );
 }
 
