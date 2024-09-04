@@ -43,7 +43,7 @@ function InternalHeader({ links, about }){
 };
 
 const LINKS = [
-    {name: "Blog", link: "Blog", class:"Blog", hasdrop: false},
+    {name: "Blog", link: "Blog", class:"BlogHeader", hasdrop: false},
     {name: "Portfolio", link: "Portfolio", class:"Link", hasdrop: false},
     {name: "Podcast", link: "Podcast", class:"Link", hasdrop: false},
     {name: "Links", link: "nothing", class:"Link", hasdrop: true},

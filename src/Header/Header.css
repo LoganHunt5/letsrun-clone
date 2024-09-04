@@ -5,6 +5,8 @@
     align-items: center;
     justify-content: left;
     position: sticky;
+    width: 100%;
+    top: 0px;
     margin: 0px;
     padding: 0px;
     font-weight: 800;
@@ -66,7 +68,7 @@
     transition: text-decoration-color 300ms, text-shadow 300ms;
 }
 
-.Blog {
+.BlogHeader {
     text-shadow: 2px 2px 0px #cf5791;
     line-height: 90px;
     color: rgba(225, 144, 163, 1);
@@ -79,7 +81,7 @@
     text-underline-offset: 10px;
     transition: text-decoration 300ms, color 300ms, text-shadow 300ms;
 }
-.Blog:Hover{
+.BlogHeader:Hover{
     color: rgba(255, 84, 167, 1);
     text-decoration: underline 0.15em rgba(255, 84, 167, 1);
     text-shadow: 2px 2px 1px #cf5791;

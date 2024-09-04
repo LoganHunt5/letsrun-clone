@@ -1,12 +1,17 @@
 .Floor{
-    position:absolute;
+    position:relative;
     bottom: 0;
-    display: flex;
     width: 100%;
     height: 70px;
-    padding-left: 100px;
-    padding-top: 5px;
+    overflow: none;
     background-color: rgb(245, 245, 245);
+}
+.FloorWrap{
+    display: flex;
+    width: auto;
+    height: 65px;
+    margin-left: 100px;
+    margin-top: 5px;
 }
 
 .Info {

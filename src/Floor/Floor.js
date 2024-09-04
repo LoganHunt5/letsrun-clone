@@ -24,12 +24,14 @@ function FloorContent({about}){
     });
     return(
         <div className="Floor">
-            <div className="Info">
-                Frontend made with React<br></br>
-                Website by <a href="Nothing">Logan Hunt</a>
-            </div>
-            <div className="IconsWrap">
-                {links}
+            <div className="FloorWrap">
+                <div className="Info">
+                    Frontend made with React<br></br>
+                    Website by <a href="Nothing">Logan Hunt</a>
+                </div>
+                <div className="IconsWrap">
+                    {links}
+                </div>
             </div>
         </div>
     );
