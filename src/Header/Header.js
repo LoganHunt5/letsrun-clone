@@ -1,5 +1,4 @@
 import './Header.css';
-import { useState, useRef, useEffect} from "react";
 import SearchBar from './SearchBar.js';
 import DropDown from './DropDown.js'
 import DropArrowImg from './pics/DropArrow.png';
@@ -8,19 +7,38 @@ import Twitter from '../Floor/Icons/twitter.png';
 import GitHub from '../Floor/Icons/github.png';
 import YouTube from '../Floor/Icons/youtube.png';
 import LinkedIn from '../Floor/Icons/linkedin.png';
-
+import { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 function Link({ which, about }){
+    const loc = useLocation(); 
     if(which.hasdrop){
         return(
-                <DropDown 
-                    about={about} 
-                    which={which}
-                />
+            <DropDown 
+                about={about} 
+                which={which}
+            />
+        );
+    } else if (loc.pathname == "/Blog" && which.name == "Blog"){
+        return(
+            
+            <a className={"BlogHeaderActive"}
+                href={which.link}>
+                {which.name}
+            </a>
+        );
+    } else if (loc.pathname == "/Portfolio" && which.name == "Portfolio"){
+        return(
+            
+            <a className={"PortfolioHeaderActive"}
+                href={which.link}>
+                {which.name}
+            </a>
+        );
+    } else {
+        return(
+            <a className={which.class} href={which.link}>{which.name}</a>
         );
     }
-    return(
-        <a className={which.class} href={which.link}>{which.name}</a>
-    );
 }
 
 
@@ -43,9 +61,9 @@ function InternalHeader({ links, about }){
 };
 
 const LINKS = [
-    {name: "Blog", link: "Blog", class:"BlogHeader", hasdrop: false},
+    {name: "Blog", link: "Blog", class:"Link", hasdrop: false},
     {name: "Portfolio", link: "Portfolio", class:"Link", hasdrop: false},
-    {name: "Podcast", link: "Podcast", class:"Link", hasdrop: false},
+    //{name: "Podcast", link: "Podcast", class:"Link", hasdrop: false},
     {name: "Links", link: "nothing", class:"Link", hasdrop: true},
     {name: "Sign In", link: "SignIn", class:"LinkSignIn", hasdrop: false}
 ];

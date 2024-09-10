@@ -1,51 +1,67 @@
-.ArticlePreviewWrapper img{
+.Blog .ArticlePreviewWrapper img{
     width: 200px;
     height: auto;
     margin: auto;
     display: block;
-    transition: box-shadow 100ms;
+    transition: box-shadow 200ms;
 }
+
+.BlogFull .ArticlePreviewWrapper img{
+    width: 300px;
+    height: auto;
+    margin: auto;
+    display: block;
+    transition: box-shadow 200ms;
+}
+
+
 
 .ArticlePreviewWrapper{
-    text-decoration: underline 0.15em rgba(0, 0, 0, 0);
-    text-underline-offset: 10px;
-    color: black;
-    transition: text-decoration 300ms;
+    color: rgb(71, 60, 68);
+    text-decoration: none;
 }
 
-.ArticlePreviewWrapper:hover h1{
-    text-decoration: underline 0.15em rgba(0, 0, 0, 1);
+.ArticlePreviewWrapper h1 {
+    text-decoration: underline 0.1em rgb(215, 124, 143);
+    text-underline-offset: 8px;
+    transition: text-decoration 200ms;
+    font-size: 24px;
 }
 
+
+.ArticlePreviewWrapper:hover {
+    color: rgb(46,35,43);
+}
+
+.ArticlePreviewWrapper:hover h1 {
+    text-decoration: underline 0.15em rgb(220, 80, 163);
+}
 .ArticlePreviewWrapper:hover img{
-    box-shadow: 10px 10px 20px grey;
+    box-shadow: 4px 4px 6px grey;
 }
-.Blog{
-    margin: 0px;
-    padding: 80px;
-    padding-left: 80px;
-    padding-right: 80px;
-    font-size: 14px;
+.Blog, .BlogFull{
+    height: 98%;
+    width: 98%;
+    padding: 0px;
+    background-color: rgb(255, 240, 247);
+    padding-top: 0px;
+    margin: 1%;
+    margin-bottom: 0%;
+    font-size: 16px;
     display: grid;
-    height: 100%;
+    height: max-content;
+    font-size: 15px;
+}
+
+.Blog {
     grid-template-columns: 1fr 3fr;
 }
 
-.BlogSide{
-    width: 230px;
-    height: 400px;
-    position: sticky;
-    align-self: flex-start;
-    background-color: #f7e4e4;
-    top: 120px;
-    border-radius: 10px; 
-    text-align: center;
+.BlogFull {
+    grid-template-columns: 1fr;
 }
 
-.BlogSide h2{
-   margin: 10px;
-   margin-top: 20px;
-}
+
 
 /*
  * Add x on blog side, and then have the articles take up
@@ -56,7 +72,67 @@
 
 .BlogGrid {
     display: grid;
+    margin: 80px;
+    margin-top: 140px;
     grid-template-columns: 1fr 1fr; 
     gap: 50px;
 }
+
+.BlogFull .BlogGrid {
+    margin: 140px;
+    margin-top: 140px;
+}
+
+.BlogSide{
+    color: rgb(61, 50, 58);
+    width: 230px;
+    height: 400px;
+    position: sticky;
+    align-self: flex-start;
+    background-color: #ede1eb;
+    top: 140px;
+    margin-top: 160px;
+    margin-left: 60px;
+    border-radius: 10px; 
+    text-align: center;
+    box-shadow: 2px 2px 4px grey;
+}
+
+.BlogSideX, .BlogSideXHover{
+   width: 30px;
+   height: 30px;
+   position: absolute;
+   top: -11px;
+   right: -11px;
+}
+
+
+.BlogSideX:hover{
+    opacity: 0;
+}
+
+
+.BlogSideXHover{
+    opacity: 0;
+    transition: top 100ms, right 100ms, width 100ms, height 100ms, opacity 100ms;
+}
+
+.BlogSideXHover:hover{
+    opacity: 1;
+    width: 35px;
+    height: 35px;
+    top: -14px;
+    right: -14px;
+}
+
+.BlogSideX img, .BlogSideXHover img{
+    width: 100%;
+    height: 100%;
+}
+
+.BlogSide h2{
+   margin: 10px;
+   margin-top: 20px;
+}
+
 

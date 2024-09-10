@@ -1,7 +1,28 @@
-import './Blog.css'
-import GuyCoding1 from './pics/guycoding1.png'
-import LinkedInGuy from './pics/linkedinguy.png'
-import StrangeLove from './pics/drstrangelove.png'
+import './Blog.css';
+import GuyCoding1 from './pics/guycoding1.png';
+import LinkedInGuy from './pics/linkedinguy.png';
+import StrangeLove from './pics/drstrangelove.png';
+import BlogSideX from './BlogSide/pics/x-close-icon-not-hover.png';
+import BlogSideXHover from './BlogSide/pics/x-close-icon.png';
+import { useState, useRef, useEffect, forwardRef } from 'react';
+
+function BlogSide({onClick}) {
+
+    return(
+        <div className="BlogSide">
+            <div className="BlogSideX">
+                <img src ={BlogSideX} alt="BlogSizeX"></img>
+            </div>
+            <div className="BlogSideXHover">
+                <img src={BlogSideXHover} alt="BlogSizeXHover" onClick={onClick}></img>
+            </div>
+            <h2>Welcome to my blog!</h2>
+        </div>
+    );
+}
+
+
+
 
 function ArticlePreview({which}){
     return(
@@ -13,27 +34,31 @@ function ArticlePreview({which}){
     ); 
 }
 
-function BlogSide(){
-    return(
-            <div className="BlogSide">
-                <h2>Welcome to my blog!</h2>
-            </div>
-    );
-}
-
 function BlogContent({blogs}){
+
+    const [IsSideOpen, setIsSideOpen] = useState(true);
+    const CloseSide = () => {
+        setIsSideOpen(false);
+        BlogRef.current.className = "BlogFull";
+
+    }
+
     const BlogArr = [];
     blogs.forEach((blog)=>{
         BlogArr.push(
-            <ArticlePreview
+             <ArticlePreview
                 which={blog}
                 key={blog.name} />
         );
     });
 
+    const BlogRef = useRef();
+
     return(
-        <div className="Blog">
-            <BlogSide />
+        <div className="Blog" ref={BlogRef}>
+        {IsSideOpen && (
+            <BlogSide onClick = {CloseSide}/>
+        )}
             <div className="BlogGrid">
                 {BlogArr}
             </div>
@@ -55,14 +80,14 @@ const TESTS = [
         img:StrangeLove,
         link:"fullarticle",
         title:"How I learned to stop worrying and love the bomb",
-        desc:"Major T. J. 'King' Kong: Survival kit contents check. In them you'll find: one forty-five caliber automatic; two boxes of ammunition; four days' concentrated emergency rations; one drug issue containing antibiotics, morphine, vitamin pills, pep pills, sleeping pills, tranquilizer pills; one miniature combination Russian phrase book and Bible; one hundred dollars in rubles; one hundred dollars in gold; nine packs of chewing gum; one issue of prophylactics; three lipsticks; three pair of nylon stockings. Shoot, a fella' could have a pretty good weekend in Vegas with all that stuff."
+        desc:"Major T. J. 'King' Kong: Survival kit contents check. In them you'll find: one forty-five caliber automatic; two boxes of ammunition; four days' concentrated emergency rations; one drug issue containing antibiotics, morphine, vitamin pills, pep pills, sleeping pills, tranquilizer pills; one miniature combination Russian phrase book and Bible" 
     },
     {
         name:"blog3",
         img:LinkedInGuy,
         link:"fullarticle",
         title:"My Whole Family Left Me, Here's What I Learned About Scalability",
-        desc:"In 'My Whole Family Left Me, Here’s What I Learned About Scalability', I explore a personal journey that parallels a critical business concept: scalability. When my family left me in a terrible divorce, I faced the challenge of handling daily life alone, much like how businesses must adapt to growth. This experience taught me valuable lessons about managing increased responsibilities, maintaining balance, and implementing efficient systems. Join me as I share insights on how this unexpected life change provided a unique perspective on scalability, emphasizing adaptability, resource management, and the importance of support systems in both personal and professional realms."
+        desc:"In 'My Whole Family Left Me, Here’s What I Learned About Scalability', I explore a personal journey that parallels a critical business concept: scalability. When my family left me in a terrible divorce, I faced the challenge of handling daily life alone, much like how businesses must adapt to growth." 
     },
 ];
 

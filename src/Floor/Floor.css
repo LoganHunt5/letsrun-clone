@@ -1,21 +1,30 @@
 .Floor{
     position:relative;
     bottom: 0;
-    width: 100%;
+    width: 98%;
     height: 70px;
+    margin: 1%;
+    margin-top: 0%;
+    margin-bottom: 1%;
+    padding: 0px;
     overflow: none;
     background-color: rgb(245, 245, 245);
 }
 .FloorWrap{
     display: flex;
     width: auto;
-    height: 65px;
+    height: 62px;
     margin-left: 100px;
-    margin-top: 5px;
+    padding-top: 8px;
 }
+
 
 .Info {
     padding-right: 40px;
+}
+
+.Info a {
+    color: black;
 }
 
 .IconsWrap{
